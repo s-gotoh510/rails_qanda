@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   # get 'questions/show'
   # get 'questions/new'
   # get 'questions/edit'
+  # get 'answers/edit'
   
   root 'questions#index'
-  resources :questions
+  resources :questions do
+    resources :answers
+  end
 end
