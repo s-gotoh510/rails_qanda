@@ -26,8 +26,8 @@
                 <td><%= answer.content %></td>
                 <td><%= answer.name %></td>
                 <td>
-                  [ 編集 ]
-                  [ 削除 ]
+                  [ <%= link_to '編集', edit_question_answer_path(@question, answer) %> ]
+                  [ <%= link_to '削除', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' } %> ]
                 </td>
               </tr>
             <% end %>
