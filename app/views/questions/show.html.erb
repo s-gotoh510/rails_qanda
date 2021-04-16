@@ -26,8 +26,8 @@
                 <td><%= answer.content %></td>
                 <td><%= answer.name %></td>
                 <td>
-                  [ <%= link_to '編集', edit_question_answer_path(@question, answer) %> ]
-                  [ <%= link_to '削除', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' } %> ]
+                  [<%= link_to '編集', edit_question_answer_path(@question, answer) %>]
+                  [<%= link_to '削除', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' } %>]
                 </td>
               </tr>
             <% end %>
@@ -54,7 +54,7 @@
       </div>
     <% end %>
     
-    <div>
+    <div class="link-top">
       <%= link_to '> ホーム', root_path %>
     </div>
   </div>

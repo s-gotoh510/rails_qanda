@@ -14,15 +14,15 @@
           <tr>
             <td><%= question.id %></td>
             <td><%= link_to question.title, question_path(question) %></td>
-            <td>[ <%= link_to '編集', edit_question_path(question) %> ]
-                [ <%= link_to '削除', question_path(question), method: :delete, data: { confirm: 'Are you sure?' } %> ]
+            <td>[<%= link_to '編集', edit_question_path(question) %>]
+                [<%= link_to '削除', question_path(question), method: :delete, data: { confirm: 'Are you sure?' } %>]
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <div>
-      <%= link_to '> 新しく質問する', new_question_path %>
+    <div class="text-center">
+      <%= link_to '新しく質問する', new_question_path, class: 'btn btn-primary' %>
     </div>
   </div>
 </div>
