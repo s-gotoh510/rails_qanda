@@ -25,10 +25,18 @@
               <tr>
                 <td><%= answer.content %></td>
                 <td><%= answer.name %></td>
-                <td>
-                  [<%= link_to '編集', edit_question_answer_path(@question, answer) %>]
-                  [<%= link_to '削除', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' } %>]
-                </td>
+                <% if user_signed_in? %>
+                  <td>
+                    [<%= link_to '編集', edit_question_answer_path(@question, answer) %>]
+                    [<%= link_to '削除', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' } %>]
+                  </td>
+                <% else %>
+                  <td class="disabled-link">
+                    [編集]
+                    [削除]
+                    <span class="disabled-link-tip">編集と削除はログイン後に可能</span>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>
@@ -39,19 +47,24 @@
     </div>
     
     <h3>質問へ回答する</h3>
-    <%= form_with model: [@question, @answer], local: true do |f| %>
-      <%= f.hidden_field :question_id, { value: @question.id } %>
-      <div class="form-group">
-        <label>回答者のお名前</label>
-        <%= f.text_field :name, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <label>回答内容</label>
-        <%= f.text_area :content, rows: "10", cols: "30", class: 'form-control' %>
-      </div>
-      <div class="text-center">
-        <%= f.submit '回答を送信', class: 'btn btn-primary' %>
-      </div>
+    <% if user_signed_in? %>
+      <%= form_with model: [@question, @answer], local: true do |f| %>
+        <%= f.hidden_field :question_id, { value: @question.id } %>
+        <div class="form-group">
+          <label>回答者のお名前</label>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label>回答内容</label>
+          <%= f.text_area :content, rows: "10", cols: "30", class: 'form-control' %>
+        </div>
+        <div class="text-center">
+          <%= f.submit '回答を送信', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>質問への回答には会員登録が必要です。</p>
+      <%= link_to "新規登録はこちら", new_user_registration_path, class: 'btn btn-outline-primary' %>
     <% end %>
     
     <div class="link-top">

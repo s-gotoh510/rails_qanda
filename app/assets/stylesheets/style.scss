@@ -7,9 +7,7 @@ $lightGray: #f5f5f3;
 $white: white;
 $primary: #007bff;
 
-
 //mixin
-
 @mixin boxBase($margin: 30px auto, $padding: 10px) {
   margin: $margin;
   padding: $padding;
@@ -36,11 +34,7 @@ line-height: 1.57;
 
 .header__bar .grid-6 a {
   text-decoration: none;
-  color: $dark;
   @extend .transition;
-  &:hover {
-    color: $accent;
-  }
 }
 
 .bold {
@@ -59,22 +53,6 @@ line-height: 1.57;
   transition-property: all;
   transition-duration: 0.2s;
   transition-timing-function: linear;
-}
-
-.btn {
-  @include basePadding(8px 20px);
-  font-size: 14px;
-  border: 2px solid $accent;
-  color: $accent;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 3px;
-  display: inline-block;
-  
-  &:hover {
-    border-color: lighten($accent, 15%);
-    color: lighten($accent, 15%);
-  }
 }
 
 .title {
@@ -118,7 +96,7 @@ header.header {
     div.grid-6 {
       text-align: right;
       a.post {
-        @extend .btn;
+        // @extend .btn;
         width: 120px;
         display: inline-left;
         margin-left: 10px;
@@ -127,6 +105,186 @@ header.header {
   }
 }
 
+.user_nav {
+  position: relative;
+  height: 100px;
+  position: absolute;
+  right: 0;
+  span {
+    top: 5px;
+    display: block;
+    float: left;
+    margin-left: 30px;
+    width: 150px;
+    height: 50px;
+    font-size: 1em;
+    cursor: pointer;
+    position: relative;
+    &:after {
+      content: '▼';
+      font-size: .7em;
+      margin-left: -4px;
+    }
+    &:hover ul {
+      color: $accent;
+      display: block;
+    }
+  }
+  ul {
+    display: none;
+    position: absolute;
+    top: 46px;
+    right: 0;
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
+    li {
+      background-color: #f0f0f0;
+      a {
+        display: block;
+        padding: 10px 20px;
+        text-align: left;
+        border-bottom: 1px solid #d8d8d8;
+      }
+    }
+  }
+}
+
+div.contents.row {
+  h2 {
+    @include boxBase(20px 0, 0);
+    font-weight: normal;
+    strong {
+      font-weight: bold;
+      padding-right: 5px;
+      font-size: 1.2em;
+    }
+  }
+  .new_user{
+  font-family: "游ゴシック", "YuGothic";
+  }
+  div.content_post {
+    @include boxBase(20px 0 ,30px);
+    position: relative;
+    height: 400px;
+    color: #fff;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba($black,0.2);
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 62%,rgba(0,0,0,0.85) 100%);
+      z-index: 1;
+      border-radius: 3px;
+    }
+    .more {
+      position: absolute;
+      cursor: pointer;
+      top: 20px;
+      right: 30px;
+      z-index: 2;
+      height: 100px;
+      width: 80px;
+      text-align: right;
+      &:hover ul.more_list {
+        display: block;
+      }
+      ul.more_list {
+        position: absolute;
+        text-align: left;
+        width: 80px;
+        right: 0;
+        font-size: 12px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        display: none;
+        box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        border-radius: 3px;
+        li {
+          border-bottom: 1px solid #ddd;
+          &:last-child {
+            border-bottom: 0;
+          }
+          a {
+            display: block;
+            padding: 5px;
+            &:hover {
+              background-color: $accent;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+    p {
+      position: absolute;
+      left: 30px;
+      right: 100px;
+      bottom: 30px;
+      margin: 0;
+      font-size: 20px;
+      z-index: 2;
+      font-weight: bold;
+      text-shadow: 0 0 2px #000, 0 0 1px #000, 0 0 1px #000;
+    }
+    span.name {
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+      z-index: 2;
+      font-size: 13px;
+      a {
+        display: block;
+        color: #aaa;
+        &:hover {
+          text-decoration: underline;
+          color: #aaa;
+        }
+      }
+      span {
+        font-size: 9px;
+        display: block;
+      }
+    }
+  }
+  .success {
+    @include boxBase(20px 0 ,30px);
+    box-shadow: 0 0 10px rgba($black,0.2);
+    background-color: $white;
+    box-sizing: border-box;
+    text-align: center;
+    h3 {
+      @include baseMargin;
+    }
+  }
+}
+form {
+  h3 {
+    @include baseMargin(0 0 20px);
+    text-align: center;
+    font-weight: normal;
+    font-size: 20px;
+    color: $dark;
+  }
+  input,textarea {
+    width: 100%;
+    @include boxBase(5px 0 15px,10px);
+    border: 1px solid $gray;
+    border-radius: 5px;
+    font-family: "游ゴシック", "YuGothic";
+  }
+  input[type="submit"] {
+    width: auto;
+    @extend .transition;
+    border: 0;
+  }
+}
 
 /**/
 .home {
@@ -143,4 +301,50 @@ header.header {
 
 .link-top {
   padding: 40px 0 40px;
+}
+
+input[type="checkbox"] {
+  width: auto;
+}
+
+// .reg-form {
+  
+// }
+
+.disabled-link {
+  position: relative;
+  cursor: pointer;
+  color: gray;
+  opacity: 0.8;
+  &-tip {
+    display: none;
+    position: absolute;
+    top: -30px;
+    right: -100px;
+    width: 120px;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: $white;
+    background-color: skyblue;
+    padding: 6px;
+    text-align: center;
+  }
+  &:hover {
+    .disabled-link-tip {
+      display:block;
+      &::before {
+        content: '';
+        width: 0;
+        height: 0;
+        /* border: 8px solid #fff; */
+        border: 8px solid transparent;
+        position: absolute;
+        bottom: -12px;
+        left: 16px;
+        border-top-color: skyblue;
+        border-left-color: skyblue;
+      }
+    }
+  }
 }

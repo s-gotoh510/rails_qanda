@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, except: [:index, :show]
   
   def index
     @questions = Question.all
@@ -41,8 +42,12 @@ class QuestionsController < ApplicationController
   
   def destroy
     # @question = Question.find(params[:id])
-    @question.destroy
-    redirect_to root_path, notice: 'Deleted!'
+    if user_signed_in?
+      @question.destroy
+      redirect_to root_path, notice: 'Deleted!'
+    else
+      redirect_to root_path, alert: 'ログインしてください'
+    end
   end
   
   private
@@ -52,5 +57,9 @@ class QuestionsController < ApplicationController
   
   def question_params
     params.require(:question).permit(:name, :title, :content)
+  end
+  
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
   end
 end
