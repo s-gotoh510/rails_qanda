@@ -33,12 +33,12 @@
                 </li>
               </ul>
             </span>
-            <a class="post" href="/tweets/new">投稿する</a>
+            <a class="btn btn-outline-primary" href="/tweets/new">新しく質問する</a>
           </div>
           <% else %>
           <div class="grid-6">
-            <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-primary' %>
-            <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-outline-primary' %>
+            <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-primary btn-login' %>
+            <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-outline-primary btn-reg' %>
           </div>
           <% end %>
         </div>

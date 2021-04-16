@@ -56,7 +56,8 @@ class QuestionsController < ApplicationController
   end
   
   def question_params
-    params.require(:question).permit(:name, :title, :content)
+    # params.require(:question).permit(:name, :title, :content)
+    params.require(:question).permit(:title, :content)
   end
   
   def move_to_index

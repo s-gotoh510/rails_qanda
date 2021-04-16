@@ -95,9 +95,11 @@ header.header {
     }
     div.grid-6 {
       text-align: right;
+      display: flex;
+      align-items: center;
       a.post {
         // @extend .btn;
-        width: 120px;
+        // width: 120px;
         display: inline-left;
         margin-left: 10px;
       }
@@ -107,16 +109,17 @@ header.header {
 
 .user_nav {
   position: relative;
-  height: 100px;
-  position: absolute;
+  // height: 100px;
+  // position: absolute;
   right: 0;
   span {
-    top: 5px;
+    // top: 10px;
     display: block;
-    float: left;
-    margin-left: 30px;
-    width: 150px;
-    height: 50px;
+    // float: left;
+    // margin-left: 30px;
+    margin-right: 18px;
+    width: 185px;
+    // height: 50px;
     font-size: 1em;
     cursor: pointer;
     position: relative;
@@ -132,9 +135,12 @@ header.header {
   }
   ul {
     display: none;
+    font-size: 12px;
     position: absolute;
-    top: 46px;
+    top: 24px;
     right: 0;
+    list-style: none;
+    padding-left: 0;
     border-left: 1px solid #d8d8d8;
     border-right: 1px solid #d8d8d8;
     box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
@@ -310,6 +316,10 @@ input[type="checkbox"] {
 // .reg-form {
   
 // }
+
+.btn-login {
+  margin-right: 12px;
+}
 
 .disabled-link {
   position: relative;
