@@ -4,12 +4,13 @@ class QuestionsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
   
   def index
-    @questions = Question.all
+    @questions = Question.includes(:user).order("created_at DESC")
   end
 
   def show
     # @question = Question.find(params[:id])
     @answer = Answer.new
+    @answers = @question.answers.includes(:user).order("created_at DESC")
   end
 
   def new
@@ -17,7 +18,8 @@ class QuestionsController < ApplicationController
   end
   
   def create
-    @question = Question.new(question_params)
+    # @question = Question.new(question_params)
+    @question = Question.new(title: question_params[:title], content: question_params[:content], user_id: current_user.id)
     if @question.save
       redirect_to root_path, notice: 'Success!'
     else

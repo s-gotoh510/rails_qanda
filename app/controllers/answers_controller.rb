@@ -2,7 +2,8 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = Answer.new
-    if @answer.update(answer_params)
+    # if @answer.update(answer_params)
+    if @answer.update(content: answer_params[:content], question_id: @question.id, user_id: current_user.id)
       redirect_to question_path(@question), notice: 'Success!'
     else
       redirect_to question_path(@question), alert: 'Invalid!'
@@ -34,6 +35,7 @@ class AnswersController < ApplicationController
   
   private
   def answer_params
-    params.require(:answer).permit(:name, :content, :question_id)
+    # params.require(:answer).permit(:name, :content, :question_id)
+    params.require(:answer).permit(:content)
   end
 end

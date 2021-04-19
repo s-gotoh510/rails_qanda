@@ -1,11 +1,11 @@
-<div>
+<div class="reg-form">
  <h2>回答を編集しています</h2>
  <%= form_with model: [@question, @answer], local: true do |f| %>
    <div class="form-group">
-     <div class="form-group">
-       <label>回答者</label>
-       <%= f.text_field :name, class: "form-control" %>
-     </div>
+     <!--<div class="form-group">-->
+     <!--  <label>回答者</label>-->
+     <!--  <#%= f.text_field :name, class: "form-control" %>-->
+     <!--</div>-->
      
      <div class="form-group">
        <label>回答内容</label>
@@ -16,7 +16,7 @@
      </div>
    </div>
  <% end %>
- <div>
+ <div class="link-back">
    <%= link_to "> 戻る", question_path(@question) %>
  </div>
 </div>

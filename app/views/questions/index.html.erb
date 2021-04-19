@@ -1,6 +1,6 @@
-<h2>質問一覧</h2>
 <div class="row home">
   <div class="col-md-12">
+    <h2>質問一覧</h2>
     <table class="table table-striped">
       <thead class="thead-light">
         <tr>
@@ -10,23 +10,27 @@
         </tr>
       </thead>
       <tbody>
-        <% @questions.each do |question| %>
-          <tr>
-            <td><%= question.id %></td>
-            <td><%= link_to question.title, question_path(question) %></td>
-            <% if user_signed_in? %>
-              <td>
-                [<%= link_to '編集', edit_question_path(question) %>]
-                [<%= link_to '削除', question_path(question), method: :delete, data: { confirm: 'Are you sure?' } %>]
-              </td>
-            <% else %>
-              <td class="disabled-link">
-                [編集]
-                [削除]
-                <span class="disabled-link-tip">編集と削除はログイン後に可能</span>
-              </td>
-            <% end %>
-          </tr>
+        <% if @questions.any? %>
+          <% @questions.each do |question| %>
+            <tr>
+              <td><%= question.id %></td>
+              <td><%= link_to question.title, question_path(question) %></td>
+              <% if user_signed_in? && current_user.id == question.user_id %>
+                <td>
+                  <%= link_to '[編集]', edit_question_path(question) %>
+                  <%= link_to '[削除]', question_path(question), method: :delete, data: { confirm: '本当に削除しますか?' } %>
+                </td>
+              <% else %>
+                <td class="disabled-link">
+                  [編集]
+                  <span class="br">[削除]</span>
+                  <span class="disabled-link-tip">ログインしてください。また他ユーザーの質問は編集できません。</span>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% else %>
+          <p>まだ質問はありません。</p>
         <% end %>
       </tbody>
     </table>

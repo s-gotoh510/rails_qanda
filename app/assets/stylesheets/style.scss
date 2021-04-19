@@ -301,11 +301,11 @@ form {
 
 .show {
   tr > td:first-child {
-    width: 60%;
+    width: 58%;
   }
 }
 
-.link-top {
+.link-back {
   padding: 40px 0 40px;
 }
 
@@ -329,16 +329,22 @@ input[type="checkbox"] {
   &-tip {
     display: none;
     position: absolute;
-    top: -30px;
-    right: -100px;
-    width: 120px;
-    height: 50px;
+    top: -90px;
+    right: 0;
+    width: 140px;
+    height: 85px;
     border-radius: 8px;
     font-size: 12px;
     color: $white;
     background-color: skyblue;
     padding: 6px;
     text-align: center;
+    &.mypage {
+        top: -50px;
+        right: -10px;
+        width: 145px;
+        height: 55px;
+      }
   }
   &:hover {
     .disabled-link-tip {
@@ -357,4 +363,66 @@ input[type="checkbox"] {
       }
     }
   }
+}
+
+.table-mypage:not(:last-of-type) {
+  margin-bottom: 80px;
+}
+
+form input,
+form textarea {
+  width: 70%;
+  max-width: 420px;
+}
+
+#answer_content {
+  max-width: initial;
+}
+
+@media screen and (max-width:576px) {
+  
+  .text-success,
+  .text-danger {
+    padding-top: 40px;
+  }
+  
+  form input,
+  form textarea {
+    width: 100%;
+    max-width: initial;
+  }
+  
+  // tr > th:nth-child(2),
+  // tr > td:nth-child(2){
+  //   width: 58%;
+  // }
+  
+  tr > th:nth-child(3),
+  tr > td:nth-child(3){
+    width: 60px;
+    // display: inline-block;
+  }
+  
+  .col-md-12,
+  .col-md-4,
+  .reg-form {
+    padding-top: 40px;
+  }
+  
+  header.header div.header__bar.row div.grid-6 {
+    width: calc(26.56250vw + 205px);
+  }
+  
+  .table thead th,
+  .table tbody td {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  
+  a[data-method="delete"]::before,
+  .br::before {
+    content: '\A';
+    white-space: pre;
+  }
+  
 }
