@@ -293,15 +293,18 @@ form {
 }
 
 /**/
-.home {
-  tr > td:nth-child(2) {
-    width: 70%;
-  }
-}
+// .home {
+//   tr > td:nth-child(2) {
+//     width: 70%;
+//   }
+// }
 
 .show {
-  tr > td:first-child {
-    width: 58%;
+  tr > th:nth-child(2) {
+    width: 54%;
+  }
+  tr > td:nth-child(2) {
+    width: 54%;
   }
 }
 
@@ -392,10 +395,10 @@ form textarea {
     max-width: initial;
   }
   
-  // tr > th:nth-child(2),
-  // tr > td:nth-child(2){
-  //   width: 58%;
-  // }
+  .show tr > th:nth-child(2),
+  .show tr > td:nth-child(2){
+    width: 40%;
+  }
   
   tr > th:nth-child(3),
   tr > td:nth-child(3){

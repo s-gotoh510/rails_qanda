@@ -4,7 +4,7 @@
     <table class="table table-striped">
       <thead class="thead-light">
         <tr>
-          <th>ID</th>
+          <th>質問した日</th>
           <th>タイトル</th>
           <th>メニュー</th>
         </tr>
@@ -13,7 +13,7 @@
         <% if @questions.any? %>
           <% @questions.each do |question| %>
             <tr>
-              <td><%= question.id %></td>
+              <td><%= question.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
               <td><%= link_to question.title, question_path(question) %></td>
               <% if user_signed_in? && current_user.id == question.user_id %>
                 <td>

@@ -17,6 +17,7 @@
         <% if @answers.any? %>
           <thead class="thead-light">
             <tr>
+              <th>回答日</th>
               <th>回答内容</th>
               <th>回答者</th>
               <th>メニュー</th>
@@ -26,6 +27,7 @@
             <!--<#% @question.answers.each do |answer| %>-->
             <% @answers.each do |answer| %>
               <tr>
+                <td><%= answer.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
                 <td><%= simple_format(answer.content) %></td>
                 <!--<td><#%= answer.name %></td>-->
                 <td><%= answer.user.nickname %></td>
