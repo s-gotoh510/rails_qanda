@@ -1,10 +1,18 @@
 class AnswersController < ApplicationController
   
   def create
+    end_counter = 5
     @question = Question.find(params[:question_id])
     @answer = Answer.new
+    
     # if @answer.update(answer_params)
     if @answer.update(content: answer_params[:content], question_id: @question.id, user_id: current_user.id)
+      num = Answer.where('question_id = ?', @answer.question_id).count
+      if num >= end_counter
+        @question.finished = true
+        @question.save
+      end
+      
       redirect_to question_path(@question), notice: '回答が完了しました!'
     else
       redirect_to question_path(@question), alert: '回答に失敗しました。'

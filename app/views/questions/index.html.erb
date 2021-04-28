@@ -16,7 +16,10 @@
             <tr>
               <td><%= question.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
               <td><%= link_to question.title, question_path(question) %></td>
-              <td><%= question.finished? '終了' : '受付中' %></td>
+              <td class="<%= question.finished ? 'text-danger' : 'text-success' %>">
+                <%= question.finished ? '終了' : '受付中' %>
+              </td>
+              
               <% if user_signed_in? && current_user.id == question.user_id %>
                 <td>
                   <%= link_to '[編集]', edit_question_path(question) %>
@@ -36,9 +39,13 @@
         <% end %>
       </tbody>
     </table>
-    <%= paginate(@questions) %>
+    
+    <div class="mb-5">
+      <%= paginate(@questions) %>
+    </div>
+    
     <% if user_signed_in? %>
-      <div class="text-center">
+      <div class="mt-5 mb-5">
         <%= link_to '新しく質問する', new_question_path, class: 'btn btn-primary' %>
       </div>
     <% end %>

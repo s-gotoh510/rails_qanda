@@ -1,12 +1,17 @@
 <div class="row show">
   <div class="col-md-12">
-    <h2><%= @question.title %></h2>
-    <div>
-      質問内容: <%= simple_format(@question.content) %>
-    </div>
-    <div>
-      <!--質問者: <#%= @question.name %>-->
-      質問者: <%= @question.user.nickname %>
+    <div class="jumbotron p-4 mb-4 card">
+      <h2 class="card-title"><%= @question.title %></h2>
+      <div class="card-text">
+        質問内容: <%= simple_format(@question.content) %>
+      </div>
+      <div class="blockquote-footer text-right">
+        <!--質問者: <#%= @question.name %>-->
+        質問者: <%= @question.user.nickname %>
+      </div>
+      <div class="<%= @question.finished ? 'text-danger' : 'text-success' %>">
+        <%= @question.finished ? '終了' : '受付中' %>
+      </div>
     </div>
     <hr>
     
@@ -52,29 +57,35 @@
       </table>
     </div>
     
-    <h3>質問へ回答する</h3>
-    <% if user_signed_in? %>
-      <%= form_with model: [@question, @answer], local: true do |f| %>
-        <!--<#%= f.hidden_field :question_id, { value: @question.id } %>-->
-        <!--<div class="form-group">-->
-        <!--  <label>回答者のお名前</label>-->
-        <!--  <%#= f.text_field :name, class: 'form-control' %>-->
-        <!--</div>-->
-        <div class="form-group">
-          <label>回答内容</label>
-          <%= f.text_area :content, rows: "10", cols: "30", class: 'form-control' %>
-        </div>
-        <div class="text-center">
-          <%= f.submit '回答を送信', class: 'btn btn-primary' %>
-        </div>
-      <% end %>
-    <% else %>
-      <p>質問への回答には会員登録が必要です。</p>
-      <%= link_to "新規登録はこちら", new_user_registration_path, class: 'btn btn-outline-primary' %>
+    <% if @question.finished? == false then %>
+      <!--<div class="card p-3 mb-4">-->
+      <div>
+        <h3>質問へ回答する</h3>
+        
+        <% if user_signed_in? %>
+          <%= form_with model: [@question, @answer], local: true do |f| %>
+            <!--<#%= f.hidden_field :question_id, { value: @question.id } %>-->
+            <!--<div class="form-group">-->
+            <!--  <label>回答者のお名前</label>-->
+            <!--  <%#= f.text_field :name, class: 'form-control' %>-->
+            <!--</div>-->
+            <div class="form-group">
+              <!--<label>回答内容</label>-->
+              <%= f.text_area :content, rows: "10", cols: "30", class: 'form-control' %>
+            </div>
+            <div>
+              <%= f.submit '回答を送信', class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>質問への回答には会員登録が必要です。</p>
+          <%= link_to "新規登録はこちら", new_user_registration_path, class: 'btn btn-outline-primary' %>
+        <% end %>
+      </div>
     <% end %>
     
     <div class="link-back">
-      <%= link_to '> 戻る', :back %>
+      <%= link_to '> 戻る', root_path %>
     </div>
   </div>
 </div>

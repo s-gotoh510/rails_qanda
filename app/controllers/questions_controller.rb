@@ -21,9 +21,9 @@ class QuestionsController < ApplicationController
     # @question = Question.new(question_params)
     @question = Question.new(title: question_params[:title], content: question_params[:content], user_id: current_user.id)
     if @question.save
-      redirect_to root_path, notice: 'Success!'
+      redirect_to root_path, notice: '質問が投稿されました!'
     else
-      flash[:alert] = 'Save error!'
+      flash[:alert] = '質問に失敗しました。'
       render :new
     end
   end
@@ -35,9 +35,9 @@ class QuestionsController < ApplicationController
   def update
     # @question = Question.find(params[:id])
     if @question.update(question_params)
-      redirect_to root_path, notice: 'Success!'
+      redirect_to root_path, notice: '質問を更新しました!'
     else
-      flash[:alert] = 'Update error!'
+      flash[:alert] = '質問の更新に失敗しました。'
       render :edit
     end
   end
@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
     # @question = Question.find(params[:id])
     if user_signed_in?
       @question.destroy
-      redirect_to root_path, notice: 'Deleted!'
+      redirect_to root_path, notice: '質問を削除しました!'
     else
       redirect_to root_path, alert: 'ログインしてください'
     end

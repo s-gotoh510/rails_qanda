@@ -166,9 +166,10 @@ div.contents.row {
       font-size: 1.2em;
     }
   }
-  .new_user{
-  font-family: "游ゴシック", "YuGothic";
+  .new_user {
+    font-family: "游ゴシック", "YuGothic";
   }
+  
   div.content_post {
     @include boxBase(20px 0 ,30px);
     position: relative;
@@ -433,5 +434,18 @@ form textarea {
 .pagination {
   & span {
     margin-right: 4px;
+  }
+}
+
+#error_explanation {
+  & h2 {
+    font-size: 24px;
+  }
+  & ul {
+    padding: 0;
+    list-style: none;
+    & li {
+      color: #dc3545;
+    }
   }
 }
