@@ -18,5 +18,7 @@ module Qanda
     
     # I added
     config.time_zone = 'Tokyo'
+    # in Japanese
+    config.i18n.default_locale = :ja
   end
 end

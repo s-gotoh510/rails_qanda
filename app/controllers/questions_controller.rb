@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
   
   def index
-    @questions = Question.includes(:user).order("created_at DESC")
+    @questions = Question.includes(:user).order("created_at DESC").page(params[:page]).per(10)
   end
 
   def show

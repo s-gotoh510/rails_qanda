@@ -71,5 +71,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.1.1'
 #jquery
 gem 'jquery-rails', '~> 4.3.1'
+# pagination
+gem 'kaminari'
 # log in
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
